@@ -1,53 +1,39 @@
-//Intution
+/* Problem : Number of Steps to reduce a Number in binary representation to one
+Platform:Leetcode
+Difficulty:Easy
+Link:https://leetcode.com/problems/number-of-steps-to-reduce-a-number-in-binary-representation-to-one/description/
+
+//Intuition
 Instead of converting the binary string into a large integer (which can overflow), we simulate the operations directly on the binary representation.
-
 Let’s think from the least significant bit (rightmost):
-
 If the bit (considering carry) is even (0) → one operation (divide by 2).
-
 If the bit (considering carry) is odd (1) →
-
 First add 1 (makes it even)
-
 Then divide by 2
 → total 2 operations.
-
 We maintain a carry variable because when we add 1 to a binary number like 111, it becomes 1000. That carry must be remembered while moving left.
-
 We process from right to left, stopping before index 0 because we don’t need to reduce the most significant bit fully — just account for leftover carry.
 
 
 
 //Approach
 Initialize:
-
 op = 0 (count operations)
-
 carry = 0
-
 Traverse from rightmost bit to index 1
-
 For each bit:
-
 Compute (current_bit + carry)
-
 If result is odd:
-
 Add 2 operations
-
 Set carry = 1
-
 Else:
-
 Add 1 operation
-
 After loop ends, return op + carry
-
 Why add final carry?
 Because if carry remains at MSB, we need one extra step.
 
 
-
+//Code
 class Solution {
 public:
     int numSteps(string s) {
