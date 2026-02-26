@@ -1,0 +1,83 @@
+//Intution
+Instead of converting the binary string into a large integer (which can overflow), we simulate the operations directly on the binary representation.
+
+Let’s think from the least significant bit (rightmost):
+
+If the bit (considering carry) is even (0) → one operation (divide by 2).
+
+If the bit (considering carry) is odd (1) →
+
+First add 1 (makes it even)
+
+Then divide by 2
+→ total 2 operations.
+
+We maintain a carry variable because when we add 1 to a binary number like 111, it becomes 1000. That carry must be remembered while moving left.
+
+We process from right to left, stopping before index 0 because we don’t need to reduce the most significant bit fully — just account for leftover carry.
+
+
+
+//Approach
+Initialize:
+
+op = 0 (count operations)
+
+carry = 0
+
+Traverse from rightmost bit to index 1
+
+For each bit:
+
+Compute (current_bit + carry)
+
+If result is odd:
+
+Add 2 operations
+
+Set carry = 1
+
+Else:
+
+Add 1 operation
+
+After loop ends, return op + carry
+
+Why add final carry?
+Because if carry remains at MSB, we need one extra step.
+
+
+
+class Solution {
+public:
+    int numSteps(string s) {
+        int n = s.length();
+        int op = 0;
+        int carry = 0;
+
+        // Traverse from right to left (ignore MSB initially)
+        for(int i = n - 1; i >= 1; i--) {
+            if(((s[i] - '0') + carry) % 2 == 1) {
+                // Odd case: add 1 (makes even) + divide by 2
+                op += 2;
+                carry = 1;
+            } else {
+                // Even case: just divide by 2
+                op += 1;
+            }
+        }
+
+        // Add remaining carry if exists
+        return op + carry;
+    }
+};
+
+
+//Time Complexity 
+O(n)
+We traverse the string once.
+
+
+//Space Complexity
+O(1)
+Only two variables (op, carry) are used.
