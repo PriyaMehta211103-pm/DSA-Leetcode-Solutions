@@ -1,1 +1,49 @@
+/* Problem : Partitioning into Minimum Number of Deci-Binary Numbers
+Platform:Leetcode
+Difficulty:Medium
+Link:https://leetcode.com/problems/partitioning-into-minimum-number-of-deci-binary-numbers/description/
+
+
+//Intuition
+Let’s think practically.
+Suppose:
+n = "32"
+To construct digit 3 at tens place, you need at least 3 deci-binary numbers, because each deci-binary number can contribute at most 1 at that position.
+Similarly:
+n = "82734"
+The maximum digit here is 8.
+That means:
+To build digit 8, you need at least 8 deci-binary numbers
+No matter what other digits are, you cannot do it in fewer than 8
+✨ So the answer is simply the maximum digit present in the string.
+That’s it.
+The problem looks complex, but the logic is beautifully simple.
+
+
+//Approach
+Traverse through the string n.
+Find the maximum digit.
+Return its integer value.
+Since n can be very large (up to 10⁵ digits), we must treat it as a string.
+
+//Code
+class Solution {
+public:
+    int minPartitions(string n) {
+        char  maxCh=*max_element(begin(n),end(n));
+        return maxCh-'0';
+    }
+};
+
+
+
+//Time Complexity
+
+O(N)
+(We scan the string once.)
+
+// Space Complexity
+O(1)
+(No extra space used.)
+
 
