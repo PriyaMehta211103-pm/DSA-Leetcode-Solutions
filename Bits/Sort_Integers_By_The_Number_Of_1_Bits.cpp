@@ -2,8 +2,8 @@
 Platform:Leetcode
 Difficulty:Easy
 Link:https://leetcode.com/problems/sort-integers-by-the-number-of-1-bits/
-
-Intuition:
+*/
+//Intuition:
 Every number can be represented in binary form.
 Example:
 3 → 11 → 2 set bits
@@ -20,7 +20,7 @@ which directly returns the number of set bits in an integer.
 That’s why your solution is clean and optimal.
 
 
-Approach:
+//Approach:
 Define a Custom Comparator
 For two numbers a and b:
 Count set bits using __builtin_popcount()
