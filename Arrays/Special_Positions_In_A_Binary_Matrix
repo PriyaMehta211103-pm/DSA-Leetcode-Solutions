@@ -1,0 +1,77 @@
+//Intuition
+A special position in a binary matrix is a cell (i, j) that contains 1 and is the only 1 in its row and its column.
+Think of it like this:
+If a 1 exists in a row that contains multiple 1s, it cannot be special.
+Similarly, if a column has more than one 1, none of those can be special.
+So the idea is simple:
+Count how many 1s exist in each row and each column.
+A cell (i, j) is special if:
+mat[i][j] == 1
+row_count[i] == 1
+col_count[j] == 1
+This approach avoids repeatedly scanning rows and columns, which keeps the solution efficient.
+
+
+//Approach
+Step 1: Count 1s in Rows and Columns
+Traverse the matrix and maintain:
+row_count[i] → number of 1s in row i
+col_count[j] → number of 1s in column j
+Step 2: Identify Special Positions
+Traverse the matrix again and check:
+If the cell is 1
+If its row and column both contain exactly one 1
+If both conditions hold, it is a special position.
+
+
+//Code
+class Solution {
+public:
+    int numSpecial(vector<vector<int>>& mat) {
+             int m=mat.size();
+             int n=mat[0].size();
+             vector<int>row_count(m,0);
+             vector<int>col_count(n,0);
+             for(int i=0;i<m;i++)
+             {
+                for(int j=0;j<n;j++)
+                {
+                    if(mat[i][j]==1)
+                    {
+                        row_count[i]++;
+                        col_count[j]++;
+                    }
+                }
+             }
+             int result=0;
+             for(int i=0;i<m;i++)
+             {
+                for(int j=0;j<n;j++)
+                {
+                    if(mat[i][j]==0)
+                    {
+                        continue;
+                    }
+                    if(row_count[i]==1 && col_count[j]==1)
+                    {
+                        result++;
+                    }
+                }
+             }
+             return result;
+    }
+};
+
+//Complexity
+Time complexity:
+First traversal → O(m × n)
+Second traversal → O(m × n)
+Total:
+O(m×n)
+
+
+Space Complexity
+We store two arrays:
+row_count → size m
+col_count → size n
+O(m+n)
