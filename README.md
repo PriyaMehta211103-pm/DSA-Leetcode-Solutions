@@ -13,4 +13,4 @@ This repository contains my daily DSA problem-solving journey.
 - C++
 
 ## 🚀 Progress
-- Problems Solved: 1 (Starting Today 🔥)
+- Problems Solved: 5 (Starting Today 🔥)
