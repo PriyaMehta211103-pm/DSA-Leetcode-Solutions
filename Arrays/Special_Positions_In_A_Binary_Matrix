@@ -1,3 +1,8 @@
+/* Problem : Special Positions In a Binary Matrix
+Platform:Leetcode
+Difficulty:Easy
+Link: https://leetcode.com/problems/special-positions-in-a-binary-matrix/description/
+
 //Intuition
 A special position in a binary matrix is a cell (i, j) that contains 1 and is the only 1 in its row and its column.
 Think of it like this:
